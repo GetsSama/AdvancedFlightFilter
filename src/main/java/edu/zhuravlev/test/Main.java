@@ -4,7 +4,6 @@ import edu.zhuravlev.filter.FlightFilter;
 import edu.zhuravlev.flight.Flight;
 import edu.zhuravlev.flight.FlightBuilder;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 /**
@@ -13,7 +12,7 @@ import java.util.List;
    заданного атрибута, то такой полет исключается.
 */
 public class Main {
-    public static void main(String[] args) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+    public static void main(String[] args) {
         List<Flight> flights = FlightBuilder.createFlights();
         String rule1 = "DepartureBeforeNow";
         String rule2 = "ArrivedBeforeDeparture";
@@ -25,8 +24,8 @@ public class Main {
 
         //Правила можно передавать различными способами:
 
-        System.out.println(filter1.filter(rule1).filter(rule2).filter(rule3).getFilteredList());
+        //System.out.println(filter1.filter(rule1).filter(rule2).filter(rule3).getFilteredList());
         //System.out.println(filter1.filter(rule1, rule2, rule3).getFilteredList());
-        //System.out.println(filter1.filter(Arrays.asList(rule1, rule2, rule3)).getFilteredList());
+        System.out.println(filter1.filter(List.of(rule1, rule2, rule3)).getFilteredList());
     }
 }
